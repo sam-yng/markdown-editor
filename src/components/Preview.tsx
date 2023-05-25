@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/no-children-prop */
 import React from "react";
 import remarkGfm from "remark-gfm";
@@ -6,6 +7,7 @@ import classNames from "classnames";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { prism } from "react-syntax-highlighter/dist/esm/styles/prism";
 import "github-markdown-css/github-markdown.css";
+import { CodeProps } from "react-markdown/lib/ast-to-react";
 
 interface PreviewProps {
   doc: string;
@@ -18,16 +20,27 @@ export const Preview: React.FC<PreviewProps> = (props) => {
         children={props.doc}
         remarkPlugins={[remarkGfm]}
         components={{
-          code({ inline, className, children, ...props }) {
+          pre({ node, ...props }) {
+            return <pre {...props} />;
+          },
+          code({
+            node,
+            inline,
+            className,
+            children,
+            style,
+            ...props
+          }: CodeProps) {
             const match = /language-(\w+)/.exec(className || "");
             return !inline && match ? (
               <SyntaxHighlighter
-                children={String(children).replace(/\n$/, "")}
                 style={prism}
                 language={match[1]}
                 PreTag="div"
                 {...props}
-              />
+              >
+                {String(children).replace(/\n$/, "")}
+              </SyntaxHighlighter>
             ) : (
               <code className={className} {...props}>
                 {children}
