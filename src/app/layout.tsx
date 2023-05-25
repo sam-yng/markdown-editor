@@ -1,3 +1,4 @@
+import classNames from "classnames";
 import "../css/globals.css";
 
 export const metadata = {
@@ -12,7 +13,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-black">{children}</body>
+      <body
+        className={classNames(
+          "bg-gradient-to-b",
+          "from-[#121212]",
+          "via-[#1E1E1E]",
+          "to-[#121212]"
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }

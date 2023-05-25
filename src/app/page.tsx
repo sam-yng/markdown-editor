@@ -6,7 +6,7 @@ import classNames from "classnames";
 import { Preview } from "@/components/Preview";
 
 const Home: React.FC = () => {
-  const [doc, setDoc] = useState<string>("");
+  const [doc, setDoc] = useState<string>("## HELLO WORLD");
   const handleDocChange = useCallback((newDoc: string) => {
     setDoc(newDoc);
   }, []);

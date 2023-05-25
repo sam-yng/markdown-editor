@@ -28,5 +28,15 @@ export const Editor: React.FC<EditorProps> = (props) => {
       // blah
     }
   }, [editorView]);
-  return <div className={classNames("w-1/2")} ref={refContainer}></div>;
+  return (
+    <div
+      className={classNames(
+        "w-1/2",
+        "overflow-auto",
+        "overflow-y-auto",
+        "max-h-[80vh]"
+      )}
+      ref={refContainer}
+    ></div>
+  );
 };

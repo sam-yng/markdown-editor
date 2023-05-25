@@ -15,7 +15,17 @@ interface PreviewProps {
 
 export const Preview: React.FC<PreviewProps> = (props) => {
   return (
-    <div className={classNames("bg-black", "px-4", "markdown-body", "w-1/2")}>
+    <div
+      className={classNames(
+        "bg-black",
+        "px-4",
+        "py-4",
+        "markdown-body",
+        "w-1/2",
+        "overflow-y-auto",
+        "max-h-[80vh]"
+      )}
+    >
       <ReactMarkdown
         children={props.doc}
         remarkPlugins={[remarkGfm]}
